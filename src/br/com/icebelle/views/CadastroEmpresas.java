@@ -1,5 +1,6 @@
 package br.com.icebelle.views;
 
+import br.com.icebelle.controllers.EmpresasController;
 import br.com.icebelle.models.Empresas;
 
 import java.io.*;
@@ -15,7 +16,11 @@ public class CadastroEmpresas {
         Empresas empresas = new Empresas();
         empresas.setNome(scanner.nextLine());
 
-        try {
+        EmpresasController empresasController = new EmpresasController();
+
+        empresasController.CadastrarEmpresas(empresas);
+
+        /*try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("C:\\icebelle_homolog\\cadastros\\empresas\\empresas.txt", true));
             bufferedWriter.write(empresas.getId() + "|" + empresas.getNome());
             bufferedWriter.newLine();
@@ -26,6 +31,6 @@ public class CadastroEmpresas {
         }
         catch (IOException ex) {
             ex.printStackTrace();
-        }
+        }*/
     }
 }
