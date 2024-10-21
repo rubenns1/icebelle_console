@@ -3,7 +3,7 @@ package br.com.icebelle.controllers;
 import br.com.icebelle.models.UsuarioDAO;
 
 public class LoginController {
-    private UsuarioDAO usuarioDAO;
+    private final UsuarioDAO usuarioDAO;
 
     public LoginController() {
         this.usuarioDAO = new UsuarioDAO();

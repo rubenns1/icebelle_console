@@ -1,27 +1,25 @@
 package br.com.icebelle.models;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class MenuDAO {
 
-    private Map<Integer, String> menus = new HashMap<Integer, String>();
+    private final Map<Integer, String> menus = new HashMap<Integer, String>();
 
     public void MenuDAO() {
         menus.put(1, "1. Cadastrar Empresas");
         menus.put(2, "2. Listar Empresas");
         menus.put(3, "3. Cadastrar Clientes");
         menus.put(4, "4. Listar Clientes");
-        menus.put(5, "5. Cadastrar Produtos");
-        menus.put(6, "6. Listar Produtos");
-        menus.put(7, "7. Listar Pendências");
-        menus.put(8, "8. Desconectar-se");
+        menus.put(5, "5. Cadastrar Encomenda");
+        menus.put(6, "6. Cadastrar Produtos");
+        menus.put(7, "7. Listar Produtos");
+        menus.put(8, "8. Listar Pendências");
+        menus.put(9, "9. Desconectar-se");
 
-        Iterator<String> stringIterator = menus.values().iterator();
-
-        while(stringIterator.hasNext()) {
-            System.out.println(stringIterator.next());
+        for (String s : menus.values()) {
+            System.out.println(s);
         }
     }
 }

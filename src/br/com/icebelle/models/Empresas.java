@@ -1,19 +1,17 @@
 package br.com.icebelle.models;
-
-import java.util.Random;
+import java.util.UUID;
 
 public class Empresas {
-
-    private static int id = 1;
+    private UUID id;
     private String nome;
 
-    public int getId() {
-        return id;
+    public String getId() {
+        this.id = UUID.randomUUID();
+        return id.toString();
     }
 
-    public void setId(int id) {
-        this.id += id;
-
+    public void setId(String id) {
+        this.id = UUID.fromString(getId());
     }
 
     public void setNome(String nome) {

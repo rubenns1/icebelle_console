@@ -1,13 +1,17 @@
 package br.com.icebelle.views;
 
+import br.com.icebelle.controllers.EmpresasController;
+import br.com.icebelle.models.Empresas;
 import br.com.icebelle.models.Menu;
 import br.com.icebelle.models.MenuDAO;
 
 import java.util.Scanner;
 
 public class Access {
-        public Access(){
-            System.out.println("[*] Logado como administrador\n");
+        public Access() {
+            Empresas empresas = new Empresas();
+            Messages messages = new Messages();
+            messages.setDefault("\n[*] Logado como administrador\n\n");
             MenuDAO menuDAO = new MenuDAO();
             menuDAO.MenuDAO();
 
@@ -21,19 +25,20 @@ public class Access {
             if(menu.getIdMenu() == 1){
                 CadastroEmpresas cadastroEmpresas = new CadastroEmpresas();
             } else if(menu.getIdMenu() == 2){
-                //Chamar tela para cadastrar clientes.
+                EmpresasController empresasController = new EmpresasController();
+                empresasController.ListarEmpresas();
             } else if(menu.getIdMenu() == 3){
-                //Chamar tela para cadastrar produtos.
+                CadastroClientes cadastroClientes = new CadastroClientes();
             } else if(menu.getIdMenu() == 4){
-                //Chamar tela inicial/principal.
+
             } else if(menu.getIdMenu() == 5){
                 //
             } else if(menu.getIdMenu() == 6){
                 //
             } else if(menu.getIdMenu() == 7){
                 //
-            } else if(menu.getIdMenu() == 8){
-                Messages messages = new Messages("\n[*] Logoff realizado com sucesso!");
+            } else if(menu.getIdMenu() == 9){
+                messages.setWarning("Logoff realizado.\n\n");
                 Home home = new Home();
                 home.StartApp();
             }

@@ -9,6 +9,7 @@ public class UsuarioDAO {
     public UsuarioDAO() {
         usuarios.put("rubens.silva", "toor");
         usuarios.put("admin", "admin");
+        usuarios.put("", "");
     }
 
     public boolean autenticar(String username, String senha) {
