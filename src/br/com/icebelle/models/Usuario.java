@@ -1,15 +1,26 @@
 package br.com.icebelle.models;
 
-public class Usuario {
+import java.util.UUID;
 
+public class Usuario{
+    private String id;
     private int perfil;
     private String usuario;
     private String senha;
 
-    public Usuario(int perfil, String usuario, String senha) {
+    public Usuario(){
+
+    }
+
+    public Usuario(String id, int perfil, String usuario, String senha) {
+        this.id = id;
         this.perfil = perfil;
         this.usuario = usuario;
         this.senha = senha;
+    }
+
+    public String getId() {
+        return UUID.randomUUID().toString();
     }
 
     public int getPerfil() {
