@@ -2,9 +2,7 @@ package br.com.icebelle.models;
 
 public class Menu {
 
-    public Menu(){
-
-    }
+    public Menu(){}
 
     private int idMenu;
 

@@ -3,13 +3,10 @@ package br.com.icebelle.models;
 import br.com.icebelle.views.Messages;
 
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UsuarioDAO {
     private Connection connection;
     private Usuario usuario;
-    private Map<String, String> map = new HashMap<>();
     private final Messages messages = new Messages();
 
     public UsuarioDAO() {
@@ -24,7 +21,7 @@ public class UsuarioDAO {
         }
     }
 
-    public void adicionarUsuario(Usuario usuario) {
+    public void adicionarUsuarioDAO(Usuario usuario) {
         String sql = "insert into users(id, perfil, login, senha) values(?, ?, ?, ?)";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -34,6 +31,7 @@ public class UsuarioDAO {
             preparedStatement.setString(4, usuario.getSenha());
             preparedStatement.executeUpdate();
             messages.setSuccess("\n" + usuario.getUsuario() + " cadastrado com sucesso.\n");
+            connection.close();
         } catch (SQLException sqlException) {
             messages.setFail("\nFalha: " + sqlException.getMessage() + ", tente novamente.\n\n");
         }

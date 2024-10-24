@@ -12,6 +12,6 @@ public class UsuarioController {
 
     public void adicionarUsuario(String id, int perfil, String login, String senha) {
         Usuario usuario = new Usuario(id, perfil, login, senha);
-        usuarioDAO.adicionarUsuario(usuario);
+        usuarioDAO.adicionarUsuarioDAO(usuario);
     }
 }

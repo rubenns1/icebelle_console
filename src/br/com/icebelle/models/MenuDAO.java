@@ -1,5 +1,6 @@
 package br.com.icebelle.models;
 
+import br.com.icebelle.views.EmpresaView;
 import br.com.icebelle.views.Messages;
 import br.com.icebelle.views.UsuarioView;
 
@@ -59,12 +60,20 @@ public class MenuDAO {
 
         switch (menu.getIdMenu()) {
             case 1:
-                //
-            case 2:
-                //
-            case 3:
-                UsuarioView uv = new UsuarioView();
+                EmpresaView cadastroEmpresaView = new EmpresaView();
+                cadastroEmpresaView.telaEmpresaView();
                 break;
+            case 2:
+                EmpresaView empresasView = new EmpresaView();
+                empresasView.listarEmpresasView();
+                break;
+            case 3:
+                //
+                break;
+            default:
+                messages.setFail("Falha ao escolher a opção (" + menu.getIdMenu() + ")");
+                break;
+
         }
     }
 }
