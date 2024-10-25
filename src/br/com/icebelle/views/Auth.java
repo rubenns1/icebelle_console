@@ -1,9 +1,5 @@
 package br.com.icebelle.views;
 
-import br.com.icebelle.controllers.ProdutoController;
-import br.com.icebelle.models.Produto;
-import br.com.icebelle.models.ProdutoDAO;
-
 import java.util.Scanner;
 
 public class Auth {
