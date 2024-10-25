@@ -6,7 +6,6 @@ import java.sql.*;
 
 public class UsuarioDAO {
     private Connection connection;
-    private Usuario usuario;
     private final Messages messages = new Messages();
 
     public UsuarioDAO() {

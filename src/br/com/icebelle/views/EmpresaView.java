@@ -10,10 +10,11 @@ public class EmpresaView {
     private Home home = new Home();
     private final Scanner scanner = new Scanner(System.in);
     private final Messages messages = new Messages();
+
     private final EmpresaController empresaController = new EmpresaController();
 
     public void telaEmpresaView() {
-        messages.setInfo("\n[*] Cadastrar de Empresa\n\n");
+        messages.setInfo("\n[*] Cadastrar Empresa\n\n");
         messages.setInfo("Nome da Empresa: ");
         Empresa empresa = new Empresa();
         empresa.setNome(scanner.nextLine());

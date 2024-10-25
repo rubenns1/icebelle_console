@@ -1,8 +1,6 @@
 package br.com.icebelle.models;
 
-import br.com.icebelle.views.EmpresaView;
-import br.com.icebelle.views.Messages;
-import br.com.icebelle.views.UsuarioView;
+import br.com.icebelle.views.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -68,10 +66,19 @@ public class MenuDAO {
                 empresasView.listarEmpresasView();
                 break;
             case 3:
-                //
+                UsuarioView usuarioView = new UsuarioView();
+                break;
+            case 6:
+                ProdutoView produtoView = new ProdutoView();
+                produtoView.telaProdutoView();
+                break;
+            case 9:
+                Auth auth = new Auth();
                 break;
             default:
-                messages.setFail("Falha ao escolher a opção (" + menu.getIdMenu() + ")");
+                messages.setFail("Escolha inexistente: " + menu.getIdMenu() + ", tente novamente.\n");
+                Home home = new Home();
+                home.startApp();
                 break;
 
         }

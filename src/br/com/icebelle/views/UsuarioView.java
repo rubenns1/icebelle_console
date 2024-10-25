@@ -24,7 +24,7 @@ public class UsuarioView {
         messages.setInfo("Senha: ");
         String senha = scanner.next();
 
-        controller.adicionarUsuario(usuario.getId(), perfil, login, senha);
+        controller.adicionarUsuarioController(usuario.getId(), perfil, login, senha);
         home.startApp();
     }
 }
