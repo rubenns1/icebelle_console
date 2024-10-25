@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class UsuarioView {
 
-    private final Home home = new Home();
-    private final Usuario usuario = new Usuario();
-    private final UsuarioController controller = new UsuarioController();
-    private final Messages messages;
+    private Home home = new Home();
+    private Usuario usuario = new Usuario();
+    private UsuarioController controller = new UsuarioController();
+    private Messages messages;
 
     public UsuarioView() {
         messages = new Messages();

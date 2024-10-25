@@ -5,8 +5,7 @@ import br.com.icebelle.models.ProdutoDAO;
 import br.com.icebelle.views.ProdutoView;
 
 public class ProdutoController {
-    private ProdutoDAO produtoDAO;
-    private ProdutoView produtoView;
+    private final ProdutoDAO produtoDAO;
 
     public ProdutoController(ProdutoDAO produtoDAO) {
         this.produtoDAO = produtoDAO;

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EmpresaView {
-    private Home home = new Home();
+    private final Home home = new Home();
     private final Scanner scanner = new Scanner(System.in);
     private final Messages messages = new Messages();
 

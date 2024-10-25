@@ -4,7 +4,7 @@ import br.com.icebelle.models.Usuario;
 import br.com.icebelle.models.UsuarioDAO;
 
 public class UsuarioController {
-    private UsuarioDAO usuarioDAO;
+    private final UsuarioDAO usuarioDAO;
 
     public UsuarioController() {
         usuarioDAO = new UsuarioDAO();
