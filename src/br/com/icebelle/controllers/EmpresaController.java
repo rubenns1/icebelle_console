@@ -21,4 +21,8 @@ public class EmpresaController {
     public List<Empresa> listarEmpresasController() {
         return empresaDAO.listarEmpresasDAO();
     }
+
+    public List<Empresa> updateEmpresasController(int select, String nome) {
+        return empresaDAO.updateEmpresasDAO(select, nome);
+    }
 }

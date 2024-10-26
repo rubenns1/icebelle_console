@@ -56,4 +56,20 @@ public class EmpresaDAO {
         }
         return empresas;
     }
+
+    public List<Empresa> updateEmpresasDAO(int select, String value) {
+        List<Empresa> empresas = listarEmpresasDAO();
+
+        String sql = "update empresa set nome = ? where nome = ?";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, value);
+            preparedStatement.setString(2, listarEmpresasDAO().get(select).getNome());
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException sqlException) {
+            messages.setFail("Falha: " + sqlException.getMessage());
+        }
+        return empresas;
+    }
 }

@@ -23,13 +23,41 @@ public class EmpresaView {
     }
 
     public void listarEmpresasView() {
-        int contador = 1;
+        int contador = 0;
         messages.setInfo("\n[*] Empresas Cadastradas\n\n");
         List<Empresa> empresas = empresaController.listarEmpresasController();
         for(Empresa empresa : empresas) {
             messages.setInfo("[" + contador + "] " + empresa.toString()+"\n");
             contador++;
         }
-        home.startApp();
+        updateEmpresasView();
+    }
+
+    public void updateEmpresasView() {
+        messages.setInfo("\nSelecione a empresa ou -1 para voltar: ");
+        byte select = scanner.nextByte();
+        if(select == -1) {
+            home.startApp();
+        } else {
+            messages.setWarning(empresaController.listarEmpresasController().get(select).getNome() + " | 1 = Modificar, 2 = Excluir, 3 = Voltar menu\n");
+            scanner.reset();
+            messages.setWarning("Ação: ");
+            int acao = scanner.nextInt();
+
+            if (acao == 1) {
+                messages.setInfo("Nome: ");
+
+                Scanner sc = new Scanner(System.in);
+                empresaController.updateEmpresasController(select, sc.nextLine());
+                messages.setSuccess("Modificação concluída.\n");
+                listarEmpresasView();
+            } else if (acao == 2) {
+                messages.setFail("Falha ao chamar uma nova tela.");
+            } else if (acao == 3) {
+                home.startApp();
+            } else {
+                throw new IllegalStateException("Unexpected value: " + acao);
+            }
+        }
     }
 }
