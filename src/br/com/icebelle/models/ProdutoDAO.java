@@ -1,8 +1,11 @@
 package br.com.icebelle.models;
 
+import br.com.icebelle.views.Home;
 import br.com.icebelle.views.Messages;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutoDAO {
 
@@ -11,7 +14,7 @@ public class ProdutoDAO {
 
     public ProdutoDAO() {
         try{
-            String url = "jdbc:mysql://localhost:3306/icebelle_homolog_v2";
+            String url = "jdbc:mysql://localhost:3306/icebelle_homolog";
             String user = "root";
             String senha = null;
 
@@ -27,12 +30,42 @@ public class ProdutoDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, produto.getId());
             preparedStatement.setString(2, produto.getNome());
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
             preparedStatement.close();
             messages.setSuccess("\n" +produto.getNome()+ " cadastrado com sucesso!\n");
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
+    }
 
+    public List<Produto> listarProdutosDAO() {
+        List<Produto> produtoList = new ArrayList<>();
+        final String sql = "select produto from produtos order by produto";
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while(resultSet.next()){
+                Produto produto = new Produto();
+                produto.setNome(resultSet.getString("produto"));
+                produtoList.add(produto);
+            }
+
+            statement.close();
+
+        } catch (SQLException sqlException)
+        {
+            sqlException.printStackTrace();
+        }
+        if(produtoList.isEmpty()){
+            messages.setFail("Nenhum produto cadastrado.\n");
+            Home home = new Home();
+            home.startApp();
+        }
+        return produtoList;
+    }
+
+    public void excluiProdutoDAO(Produto produto) {
+        String sql = "delete from produtos where nome = ?";
     }
 }

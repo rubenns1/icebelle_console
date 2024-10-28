@@ -7,8 +7,18 @@ public class Produto {
     private String id;
     private String nome;
 
+    public Produto() {}
+
     public Produto(String nome) {
         this.id = getId();
+        this.nome = nome;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -17,6 +27,11 @@ public class Produto {
     }
 
     public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public String toString() {
         return nome;
     }
 }

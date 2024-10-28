@@ -14,7 +14,7 @@ public class UsuarioView {
 
     public UsuarioView() {
         messages = new Messages();
-        messages.setInfo("\n[*] Cadastro de Clientes\n");
+        messages.setInfo("\n[+] Cadastro de Clientes\n");
 
         Scanner scanner = new Scanner(System.in);
         messages.setInfo("Perfil de usuário (0 = comum / 1 = admin): ");

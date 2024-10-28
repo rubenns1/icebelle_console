@@ -72,6 +72,10 @@ public class MenuDAO {
                 ProdutoView produtoView = new ProdutoView();
                 produtoView.telaProdutoView();
                 break;
+            case 7:
+                ProdutoView produtosView = new ProdutoView();
+                produtosView.listarProdutoView();
+                break;
             case 9:
                 Auth auth = new Auth();
                 break;

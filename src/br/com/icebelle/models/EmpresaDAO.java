@@ -30,9 +30,21 @@ public class EmpresaDAO {
             preparedStatement.setString(2, empresa.getNome());
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            messages.setSuccess(empresa.getNome() + " cadastrada com sucesso.\n");
 
-            messages.setSuccess("\n[" + empresa.getNome() + "] cadastrada com sucesso.\n");
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+    }
 
+    public void excluirEmpresaDAO(String nome) {
+        final String sql = "delete from empresa where nome = ?";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, nome);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            messages.setSuccess("Exclusão realizada com sucesso.\n");
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
@@ -44,6 +56,7 @@ public class EmpresaDAO {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
+
             while(resultSet.next()){
                 Empresa empresa = new Empresa();
                 empresa.setId(resultSet.getString("id"));
@@ -54,6 +67,11 @@ public class EmpresaDAO {
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
+
+        if(empresas.isEmpty()) {
+            messages.setFail("Nenhuma empresa cadastrada.");
+        }
+
         return empresas;
     }
 
@@ -65,11 +83,17 @@ public class EmpresaDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, value);
             preparedStatement.setString(2, listarEmpresasDAO().get(select).getNome());
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException sqlException) {
             messages.setFail("Falha: " + sqlException.getMessage());
         }
+
+        if(empresas.isEmpty()) {
+            messages.setFail("Nenhuma empresa cadastrada.");
+        }
         return empresas;
     }
+
+
 }

@@ -25,4 +25,8 @@ public class EmpresaController {
     public List<Empresa> updateEmpresasController(int select, String nome) {
         return empresaDAO.updateEmpresasDAO(select, nome);
     }
+
+    public void excluirEmpresaController(String nome) {
+        empresaDAO.excluirEmpresaDAO(nome);
+    }
 }

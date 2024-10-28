@@ -1,6 +1,4 @@
 package br.com.icebelle.controllers;
-
-import br.com.icebelle.models.Menu;
 import br.com.icebelle.models.MenuDAO;
 
 public class MenuController {

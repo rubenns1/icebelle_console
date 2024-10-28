@@ -10,7 +10,6 @@ public class EmpresaView {
     private final Home home = new Home();
     private final Scanner scanner = new Scanner(System.in);
     private final Messages messages = new Messages();
-
     private final EmpresaController empresaController = new EmpresaController();
 
     public void telaEmpresaView() {
@@ -24,7 +23,7 @@ public class EmpresaView {
 
     public void listarEmpresasView() {
         int contador = 0;
-        messages.setInfo("\n[*] Empresas Cadastradas\n\n");
+        messages.setInfo("\n[*] Empresas Cadastradas\n");
         List<Empresa> empresas = empresaController.listarEmpresasController();
         for(Empresa empresa : empresas) {
             messages.setInfo("[" + contador + "] " + empresa.toString()+"\n");
@@ -43,16 +42,15 @@ public class EmpresaView {
             scanner.reset();
             messages.setWarning("Ação: ");
             int acao = scanner.nextInt();
-
             if (acao == 1) {
                 messages.setInfo("Nome: ");
-
                 Scanner sc = new Scanner(System.in);
                 empresaController.updateEmpresasController(select, sc.nextLine());
                 messages.setSuccess("Modificação concluída.\n");
                 listarEmpresasView();
             } else if (acao == 2) {
-                messages.setFail("Falha ao chamar uma nova tela.");
+                empresaController.excluirEmpresaController(empresaController.listarEmpresasController().get(select).getNome());
+                listarEmpresasView();
             } else if (acao == 3) {
                 home.startApp();
             } else {
@@ -60,4 +58,8 @@ public class EmpresaView {
             }
         }
     }
+
+    /*public void excluirEmpresasView(String nome) {
+        empresaController.excluirEmpresaController(nome);
+    }*/
 }
