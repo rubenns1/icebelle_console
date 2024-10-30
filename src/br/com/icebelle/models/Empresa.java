@@ -15,6 +15,7 @@ public class Empresa {
         this.id = id;
         this.nome = nome;
     }
+    
     public Empresa(int acao, String id, String nome) {
         this.acao = acao;
         this.id = id;

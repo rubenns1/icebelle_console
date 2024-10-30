@@ -14,7 +14,7 @@ public class ProdutoDAO {
 
     public ProdutoDAO() {
         try{
-            String url = "jdbc:mysql://localhost:3306/icebelle_homolog";
+            String url = "jdbc:mysql://localhost:3306/icebelle_homolog_v2";
             String user = "root";
             String senha = null;
 
@@ -40,14 +40,14 @@ public class ProdutoDAO {
 
     public List<Produto> listarProdutosDAO() {
         List<Produto> produtoList = new ArrayList<>();
-        final String sql = "select produto from produtos order by produto";
+        final String sql = "select id, nome from produtos order by nome";
         try{
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
             while(resultSet.next()){
                 Produto produto = new Produto();
-                produto.setNome(resultSet.getString("produto"));
+                produto.setNome(resultSet.getString("nome"));
                 produtoList.add(produto);
             }
 
@@ -59,13 +59,38 @@ public class ProdutoDAO {
         }
         if(produtoList.isEmpty()){
             messages.setFail("Nenhum produto cadastrado.\n");
-            Home home = new Home();
-            home.startApp();
+            Home.main(null);
         }
         return produtoList;
     }
 
     public void excluiProdutoDAO(Produto produto) {
         String sql = "delete from produtos where nome = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, produto.getNome());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            messages.setSuccess(produto.getNome()+ " excluido com sucesso!\n");
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+    }
+
+    public List<Produto> atualizarProdutoDAO(int index, String nome) {
+        List<Produto> produtos = listarProdutosDAO();
+
+        String sql = "update produtos set nome = ? where nome = ?";
+
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, nome);
+            preparedStatement.setString(2, produtos.get(index).getNome());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch(SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return produtos;
     }
 }

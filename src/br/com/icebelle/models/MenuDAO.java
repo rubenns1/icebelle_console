@@ -12,6 +12,8 @@ public class MenuDAO {
     private final Messages messages = new Messages();
     private final Menu menu = new Menu();
     private final Scanner scanner = new Scanner(System.in);
+    private final EmpresaView empresaView = new EmpresaView();
+    private final ProdutoView produtoView = new ProdutoView();
 
     public void menuUserDAO() {
         messages.setDefault("\n[*] Logado como usuário comum\n\n");
@@ -20,20 +22,22 @@ public class MenuDAO {
         menus.put(3, "3. Listar Produtos");
         menus.put(4, "4. Desconectar-se");
 
-        for (String s: menus.values()) {
+        /*for (String s: menus.values()) {
             System.out.println(s);
-        }
+        }*/
 
         messages.setDefault("\nEscolha uma opção para começar: ");
         menu.setIdMenu(scanner.nextInt());
 
-        switch (menu.getIdMenu()) {
-            case 1:
-                //
-            case 2:
-                //
-            case 3:
-                //
+        if(menu.getIdMenu() == 1) {
+            // cad_encomenda
+        } else if(menu.getIdMenu() == 2) {
+            // list_encomenda
+        } else if(menu.getIdMenu() == 3) {
+            ProdutoView produto = new ProdutoView();
+            produto.listarProdutosView();
+        } else if(menu.getIdMenu() == 4) {
+            Home.main(null);
         }
     }
 
@@ -44,10 +48,11 @@ public class MenuDAO {
         menus.put(3, "3. Cadastrar Clientes");
         menus.put(4, "4. Listar Clientes");
         menus.put(5, "5. Cadastrar Encomenda");
-        menus.put(6, "6. Cadastrar Produtos");
-        menus.put(7, "7. Listar Produtos");
-        menus.put(8, "8. Listar Pendências");
-        menus.put(9, "9. Desconectar-se");
+        menus.put(6, "6. Listar Encomendas");
+        menus.put(7, "7. Cadastrar Produtos");
+        menus.put(8, "8. Listar Produtos");
+        menus.put(9, "9. Listar Pendências");
+        menus.put(10, "10. Desconectar-se");
 
         for (String s : menus.values()) {
             System.out.println(s);
@@ -56,35 +61,27 @@ public class MenuDAO {
         messages.setDefault("\nEscolha uma opção para começar: ");
         menu.setIdMenu(scanner.nextInt());
 
-        switch (menu.getIdMenu()) {
-            case 1:
-                EmpresaView cadastroEmpresaView = new EmpresaView();
-                cadastroEmpresaView.telaEmpresaView();
-                break;
-            case 2:
-                EmpresaView empresasView = new EmpresaView();
-                empresasView.listarEmpresasView();
-                break;
-            case 3:
-                UsuarioView usuarioView = new UsuarioView();
-                break;
-            case 6:
-                ProdutoView produtoView = new ProdutoView();
-                produtoView.telaProdutoView();
-                break;
-            case 7:
-                ProdutoView produtosView = new ProdutoView();
-                produtosView.listarProdutoView();
-                break;
-            case 9:
-                Auth auth = new Auth();
-                break;
-            default:
-                messages.setFail("Escolha inexistente: " + menu.getIdMenu() + ", tente novamente.\n");
-                Home home = new Home();
-                home.startApp();
-                break;
-
+        if(menu.getIdMenu() == 1) {
+            empresaView.telaEmpresaView();
+        } else if(menu.getIdMenu() == 2) {
+            empresaView.listarEmpresasView();
+        } else if(menu.getIdMenu() == 3) {
+            UsuarioView usuarioView = new UsuarioView();
+            usuarioView.telaCadastroUsuario();
+        } else if(menu.getIdMenu() == 4) {
+            //list_clientes
+        } else if(menu.getIdMenu() == 5) {
+            // cad_encomenda
+        } else if(menu.getIdMenu() == 6) {
+            // list_encomenda
+        } else if(menu.getIdMenu() == 7) {
+            produtoView.telaCadastroProdutoView();
+        } else if(menu.getIdMenu() == 8) {
+            produtoView.listarProdutosView();
+        } else if(menu.getIdMenu() == 9) {
+            //list_pendencias
+        } else if(menu.getIdMenu() == 10) {
+            Home.main(null);
         }
     }
 }

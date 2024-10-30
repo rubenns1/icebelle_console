@@ -14,4 +14,10 @@ public class UsuarioController {
         Usuario usuario = new Usuario(id, perfil, login, senha);
         usuarioDAO.adicionarUsuarioDAO(usuario);
     }
+
+    public boolean loginController(String login, String senha) {
+        Usuario usuario = new Usuario(login, senha);
+        usuarioDAO.loginDAO(login, senha);
+        return true;
+    }
 }

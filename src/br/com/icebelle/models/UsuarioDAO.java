@@ -1,12 +1,16 @@
 package br.com.icebelle.models;
 
+import br.com.icebelle.controllers.MenuController;
+import br.com.icebelle.views.Home;
 import br.com.icebelle.views.Messages;
 
+import javax.swing.*;
 import java.sql.*;
 
 public class UsuarioDAO {
     private Connection connection;
     private final Messages messages = new Messages();
+    private final MenuDAO menuDAO = new MenuDAO();
 
     public UsuarioDAO() {
         try{
@@ -33,6 +37,36 @@ public class UsuarioDAO {
             connection.close();
         } catch (SQLException sqlException) {
             messages.setFail("\nFalha: " + sqlException.getMessage() + ", tente novamente.\n\n");
+        }
+    }
+
+    public void loginDAO(String login, String senha) {
+        String sql = "select perfil, login, senha from users where login = ? and senha = ?";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, senha);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int perfil = resultSet.getInt("perfil");
+            login = resultSet.getString("login");
+            senha = resultSet.getString("senha");
+
+            if(perfil == 1 && login.equals(login) && senha.equals(senha)){
+                messages.setSuccess("\n" + login + " (administrador) logado com sucesso.\n");
+                messages.setFail(String.valueOf(perfil));
+                menuDAO.menuAdminDAO();
+            } else if(perfil == 0 && login.equals(login) && senha.equals(senha)){
+                messages.setSuccess("\n" + login + " (cliente) logado com sucesso.\n");
+                messages.setFail(String.valueOf(perfil));
+                menuDAO.menuUserDAO();
+            } else{
+                messages.setFail("Falha ao logar-se");
+            }
+
+        } catch(SQLException sqlException) {
+            messages.setFail("Falha ao logar-se\n");
+            Home.main(null);
         }
     }
 }

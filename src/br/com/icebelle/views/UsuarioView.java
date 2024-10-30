@@ -6,14 +6,13 @@ import br.com.icebelle.models.Usuario;
 import java.util.Scanner;
 
 public class UsuarioView {
-
-    private Home home = new Home();
     private Usuario usuario = new Usuario();
     private UsuarioController controller = new UsuarioController();
-    private Messages messages;
+    private Messages messages = new Messages();
 
-    public UsuarioView() {
-        messages = new Messages();
+    public UsuarioView(){}
+
+    public void telaCadastroUsuario() {
         messages.setInfo("\n[+] Cadastro de Clientes\n");
 
         Scanner scanner = new Scanner(System.in);
@@ -25,6 +24,17 @@ public class UsuarioView {
         String senha = scanner.next();
 
         controller.adicionarUsuarioController(usuario.getId(), perfil, login, senha);
-        home.startApp();
+        messages.setSuccess("Notificação de cadastro enviada ao cliente.\n");
+    }
+
+    public boolean logarUsuario() {
+        Scanner scanner = new Scanner(System.in);
+        messages.setWarning("\n[+] Tela de Autenticação\n");
+        messages.setWarning("Login: ");
+        String usuario = scanner.nextLine();
+        messages.setWarning("Senha: ");
+        String senha = scanner.nextLine();
+        UsuarioController usuarioController = new UsuarioController();
+        return usuarioController.loginController(usuario, senha);
     }
 }
