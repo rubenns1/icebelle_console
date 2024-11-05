@@ -1,8 +1,6 @@
 package br.com.icebelle.models;
 
-import br.com.icebelle.views.Home;
 import br.com.icebelle.views.Messages;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +30,7 @@ public class ProdutoDAO {
             preparedStatement.setString(2, produto.getNome());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            messages.setSuccess("\n" +produto.getNome()+ " cadastrado com sucesso!\n");
+            messages.setSuccess("\n" +produto.getNome()+ " cadastrado com sucesso!\n\n");
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
@@ -50,16 +48,13 @@ public class ProdutoDAO {
                 produto.setNome(resultSet.getString("nome"));
                 produtoList.add(produto);
             }
-
             statement.close();
-
         } catch (SQLException sqlException)
         {
             sqlException.printStackTrace();
         }
         if(produtoList.isEmpty()){
             messages.setFail("Nenhum produto cadastrado.\n");
-            Home.main(null);
         }
         return produtoList;
     }

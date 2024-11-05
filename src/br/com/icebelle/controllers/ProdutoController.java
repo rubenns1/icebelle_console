@@ -2,8 +2,6 @@ package br.com.icebelle.controllers;
 
 import br.com.icebelle.models.Produto;
 import br.com.icebelle.models.ProdutoDAO;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoController {

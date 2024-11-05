@@ -15,16 +15,17 @@ public class MenuDAO {
     private final EmpresaView empresaView = new EmpresaView();
     private final ProdutoView produtoView = new ProdutoView();
 
+
     public void menuUserDAO() {
-        messages.setDefault("\n[*] Logado como usuário comum\n\n");
+        messages.setDefault("");
         menus.put(1, "1. Cadastrar Encomenda");
         menus.put(2, "2. Listar Encomendas");
         menus.put(3, "3. Listar Produtos");
         menus.put(4, "4. Desconectar-se");
 
-        /*for (String s: menus.values()) {
+        for (String s: menus.values()) {
             System.out.println(s);
-        }*/
+        }
 
         messages.setDefault("\nEscolha uma opção para começar: ");
         menu.setIdMenu(scanner.nextInt());
@@ -41,8 +42,9 @@ public class MenuDAO {
         }
     }
 
+
     public void menuAdminDAO() {
-        messages.setDefault("\n[*] Logado como administrador\n\n");
+        messages.setDefault("");
         menus.put(1, "1. Cadastrar Empresas");
         menus.put(2, "2. Listar Empresas");
         menus.put(3, "3. Cadastrar Clientes");

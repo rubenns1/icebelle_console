@@ -16,7 +16,7 @@ public class UsuarioController {
     }
 
     public boolean loginController(String login, String senha) {
-        Usuario usuario = new Usuario(login, senha);
+        //Usuario usuario = new Usuario(login, senha);
         usuarioDAO.loginDAO(login, senha);
         return true;
     }

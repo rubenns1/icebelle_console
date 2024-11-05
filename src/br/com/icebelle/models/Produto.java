@@ -14,10 +14,6 @@ public class Produto {
         this.nome = nome;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
     }

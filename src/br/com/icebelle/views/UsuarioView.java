@@ -6,9 +6,11 @@ import br.com.icebelle.models.Usuario;
 import java.util.Scanner;
 
 public class UsuarioView {
+
     private Usuario usuario = new Usuario();
     private UsuarioController controller = new UsuarioController();
     private Messages messages = new Messages();
+    public String valorUsuario;
 
     public UsuarioView(){}
 
@@ -31,10 +33,15 @@ public class UsuarioView {
         Scanner scanner = new Scanner(System.in);
         messages.setWarning("\n[+] Tela de Autenticação\n");
         messages.setWarning("Login: ");
-        String usuario = scanner.nextLine();
+        valorUsuario = scanner.nextLine();
         messages.setWarning("Senha: ");
         String senha = scanner.nextLine();
         UsuarioController usuarioController = new UsuarioController();
-        return usuarioController.loginController(usuario, senha);
+        return (usuarioController.loginController(valorUsuario, senha));
+    }
+
+    @Override
+    public String toString() {
+        return valorUsuario;
     }
 }

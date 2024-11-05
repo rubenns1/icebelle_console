@@ -24,13 +24,14 @@ public class EmpresaDAO {
 
     public void cadastrarEmpresaDAO(Empresa empresa) {
         final String sql = "insert into empresa(id, nome) values(?, ?)";
+
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, empresa.getId());
             preparedStatement.setString(2, empresa.getNome());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            messages.setSuccess(empresa.getNome() + " cadastrada com sucesso.\n");
+            messages.setSuccess(empresa.getNome() + " cadastrada com sucesso.\n\n");
 
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -39,6 +40,7 @@ public class EmpresaDAO {
 
     public void excluirEmpresaDAO(String nome) {
         final String sql = "delete from empresa where nome = ?";
+
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, nome);
@@ -53,6 +55,7 @@ public class EmpresaDAO {
     public List<Empresa> listarEmpresasDAO() {
         List<Empresa> empresas = new ArrayList<>();
         final String sql = "select id, nome from empresa order by nome";
+
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -67,18 +70,16 @@ public class EmpresaDAO {
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
-
         if(empresas.isEmpty()) {
             messages.setFail("Nenhuma empresa cadastrada.");
         }
-
         return empresas;
     }
 
     public List<Empresa> updateEmpresasDAO(int select, String value) {
         List<Empresa> empresas = listarEmpresasDAO();
-
         String sql = "update empresa set nome = ? where nome = ?";
+
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, value);
@@ -88,12 +89,9 @@ public class EmpresaDAO {
         } catch (SQLException sqlException) {
             messages.setFail("Falha: " + sqlException.getMessage());
         }
-
         if(empresas.isEmpty()) {
             messages.setFail("Nenhuma empresa cadastrada.");
         }
         return empresas;
     }
-
-
 }

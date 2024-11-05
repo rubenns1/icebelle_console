@@ -1,9 +1,7 @@
 package br.com.icebelle.views;
 
 import br.com.icebelle.controllers.EmpresaController;
-import br.com.icebelle.controllers.MenuController;
 import br.com.icebelle.models.Empresa;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,7 +35,7 @@ public class EmpresaView {
         byte select = scanner.nextByte();
 
         if(select == -1) {
-            // voltar
+            Home.main(null);
         } else {
             messages.setWarning(empresaController.listarEmpresasController().get(select).getNome() + " | 1 = Modificar, 2 = Excluir, 3 = Voltar menu\n");
             scanner.reset();

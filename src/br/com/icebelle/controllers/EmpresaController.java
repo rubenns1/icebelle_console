@@ -2,7 +2,6 @@ package br.com.icebelle.controllers;
 
 import br.com.icebelle.models.Empresa;
 import br.com.icebelle.models.EmpresaDAO;
-
 import java.util.List;
 
 public class EmpresaController {

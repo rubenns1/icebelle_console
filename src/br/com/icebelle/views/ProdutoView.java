@@ -17,7 +17,6 @@ public class ProdutoView {
         messages.setInfo("\n[*] Tela Cadastro de Produtos\n\n");
         messages.setInfo("Nome: ");
         produtoController.adicionarProdutoController(scanner.nextLine());
-        Home.main(null);
     }
 
     public void listarProdutosView() {
@@ -30,7 +29,7 @@ public class ProdutoView {
         atualizarProdutoView();
     }
 
-    public void atualizarProdutoView(){
+    public void atualizarProdutoView() {
         messages.setWarning("Selecione um produto ou -1 para voltar: ");
         byte index = scanner.nextByte();
         if(index == -1){
@@ -51,7 +50,7 @@ public class ProdutoView {
                 excluirProdutoView(index);
                 listarProdutosView();
             } else if(acao == 3){
-                Home.main(null);
+                listarProdutosView();
             }
         }
     }
